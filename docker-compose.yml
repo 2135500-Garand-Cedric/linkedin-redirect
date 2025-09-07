@@ -1,6 +1,6 @@
 services:
   linkedin-redirect:
-    image: php:8.2-apache
+    build: .
     env_file:
       - .env
     container_name: linkedin-redirect
@@ -9,7 +9,7 @@ services:
     volumes:
       - /home/cedri/websites/linkedin-redirect:/var/www/html
     depends_on:
-      - time-management-db
+      - linkedin-redirect-db
   linkedin-redirect-db:
     image: mysql:8.0
     container_name: linkedin-redirect-db
@@ -26,6 +26,7 @@ services:
       - "3306:3306"
     volumes:
       - linkedin_db_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   linkedin_db_data:
