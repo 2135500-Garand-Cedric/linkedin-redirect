@@ -33,7 +33,7 @@ if (!empty($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] !== '127.0.0.1') 
 }
 
 // Insert data into database
-$stmt = $conn->prepare("INSERT INTO linkedin_redirects (referrer_url, country, city) VALUES (?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO redirects (referrer_url, country, city) VALUES (?, ?, ?)");
 $stmt->bind_param("sss", $referrer, $country, $city);
 $stmt->execute();
 $stmt->close();
